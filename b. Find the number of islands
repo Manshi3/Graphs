@@ -1,6 +1,7 @@
 Given a grid of size n*m (n is the number of rows and m is the number of columns in the grid) consisting of '0's (Water) and '1's(Land). Find the number of islands.
 
-Note: An island is either surrounded by water or boundary of grid and is formed by connecting adjacent lands horizontally or vertically or diagonally i.e., in all 8 directions.
+Note: An island is either surrounded by water or boundary of grid and is formed by connecting adjacent lands horizontally or vertically or diagonally i.e., in all 8 
+directions.
 
 Example 1:
 
@@ -31,8 +32,12 @@ and other in orange.
 - Agr bfs lagae to, phle visisted bnaenge, agr element visisted nhi hai to bfs call krenge
 - bfs funtion me- 
 - phla element visisted ke endr daalenge
-- queue bnaenge, jbtak queue empty ni ho jati, queue me daalenge phla element
-- yha pe ek kaam hme ye krna hai ki 
+- queue bnaenge, jbtak queue empty ni ho jati, queue me daalenge phla element. and ye ause hi krte rhana hau
+- yha pe ek kaam hme ye krna hai ki since hme neighboring elememgs bhi chekc krne hai isslue ham delta row col bnaenge, from -1 to 1.
+- uske baad phir neighbor row col bnate and usme delta row col + normal row col daalenge.
+- ab yehi neighbor row col use kremhe and check krenge visted to nhi, mhi to vididt krenge anf 1 kr denge vha and vo queue me bhi daal denege
+- ise ohle condition lgani zaruti hai. ki kahi neighbor row col 0 ke kam to na ho and n is chote ho and jaha ham ckeck krne ja rhe ho vo vivited grid na ho and 
+jaha ja rhe hai vo land ho
 
 class Solution {
   private:
