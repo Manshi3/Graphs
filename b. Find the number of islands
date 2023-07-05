@@ -1,0 +1,93 @@
+Given a grid of size n*m (n is the number of rows and m is the number of columns in the grid) consisting of '0's (Water) and '1's(Land). Find the number of islands.
+
+Note: An island is either surrounded by water or boundary of grid and is formed by connecting adjacent lands horizontally or vertically or diagonally i.e., in all 8 directions.
+
+Example 1:
+
+Input:
+grid = {{0,1},{1,0},{1,1},{1,0}}
+Output:
+1
+Explanation:
+The grid is-
+0 1
+1 0
+1 1
+1 0
+All lands are connected.
+Example 2:
+
+Input:
+grid = {{0,1,1,1,0,0,0},{0,0,1,1,0,1,0}}
+Output:
+2
+Expanation:
+The grid is-
+0 1 1 1 0 0 0
+0 0 1 1 0 1 0 
+There are two islands :- one is colored in blue 
+and other in orange.
+
+- Agr bfs lagae to, phle visisted bnaenge, agr element visisted nhi hai to bfs call krenge
+- bfs funtion me- 
+- phla element visisted ke endr daalenge
+- queue bnaenge, jbtak queue empty ni ho jati, queue me daalenge phla element
+- yha pe ek kaam hme ye krna hai ki 
+
+class Solution {
+  private:
+    // bfs funation
+    void bfs(int i, int j, vector<vector<int>> &visisted, vector<vector<char>> &grid) {
+        int n = grid.size(), m = grid[0].size();
+        
+        visited[i][j] = 1;
+        queue<pair<int, int>> q;
+        q.push({i, j});
+        
+        while(!q.empty()) {
+            int row = q.front().first;
+            int col = q.front().second;
+            q.pop();
+        }
+        
+        for(delrow = -1; delrow < 1; delrow++) {
+            for(delcol = -1; delcol < 1; delcol) {
+                int neighrow = row + delrow;
+                int neighcol = col + delcol;
+                if(neighrow >= 0 && neighrow < n && neighcol >= 0 && neighcol < n && !visited[neighrow][neighcol] && grid[i][j]==1) {
+                    visisted[neighrow][neighcol] = 1;
+                    q.push({neighrow, neighcol});
+                }
+            }
+        }
+    }
+  public:
+    // Function to find the number of islands.
+    int numIslands(vector<vector<char>>& grid) {
+        
+        int count = 0;
+        int n = grid.size();
+        int m = grid[0].size();
+        vector<int> visisted(n, vector<int>(m, 0));
+    
+        for(int i = 0; i < n; i++) {
+            for(int j = 0; j < m; j++) {
+                if(!visited[i][j]) {
+                    count += 1; 
+                    bfs(i, j, visisted, grid);
+                }
+            }
+        }
+        return count;
+    }
+};
+
+sc - 
+n^2 for vivited grid
+n^2 queue - rare 
+sc - O(n^2)
+
+tc - 
+n^2 for traversing for worse case if all are 1
+n^2 finding neightbors
+tc - n^2
