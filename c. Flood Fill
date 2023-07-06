@@ -19,3 +19,5 @@ public:
         return image;
     }
 };
+TC - O(n*m)
+SC - O(1) cus no extra space to return , O(n*m) for recursion stack space
